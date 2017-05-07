@@ -30,6 +30,7 @@ class User_sessions_controller extends Module_controller
      * Retrieve data in json format
      *
      **/
+/* Commented out original to test new method
      public function get_data($serial_number = '')
      {
         $obj = new View();
@@ -47,5 +48,21 @@ class User_sessions_controller extends Module_controller
 
         $obj->view('json', array('msg' => $user_sessions_tab));
      }
+End of original comment*/
+
+    public function get_unique_users()
+     {
+        $obj = new View();
+
+        if (! $this->authorized()) {
+            $obj->view('json', array('msg' => array('error' => 'Not authenticated')));
+            return;
+        }
+        
+        $unique_users = new User_sessions_model;
+        $obj->view('json', array('msg' => $unique_users->get_unique_users()));
+     }
+
+
 		
 } // END class User_sessionss_controller

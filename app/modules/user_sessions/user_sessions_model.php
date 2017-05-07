@@ -25,6 +25,25 @@ class User_sessions_model extends Model {
 
 		$this->serial_number = $serial;
 	}
+
+
+     public function get_unique_users()
+     {
+        $out = array();
+        $sql = "SELECT DISTINCT user, serial_number, COUNT(1) AS count
+                FROM user_sessions
+                WHERE USER NOT LIKE "" AND USER NOT LIKE "_mbsetupuser"
+                GROUP BY user
+                ORDER BY COUNT DESC";
+        
+        foreach ($this->query($sql) as $obj) {
+            if ("$obj->count" !== "0") {
+                $obj->user = $obj->user ? $obj->user : 'Unknown';
+                $out[] = $obj;
+            }
+        }
+        return $out;
+     }
 	
 	// ------------------------------------------------------------------------
     

@@ -87,20 +87,6 @@ new User_sessions_model;
 	        	var link = mr.getClientDetailLink(name, sn, '#tab_user_sessions-tab');
 	        	$('td:eq(0)', nRow).html(link);
                 
-             	// Event type
-	        	var eventlocal=$('td:eq(2)', nRow).html();
-	        	eventlocal = eventlocal == 'login' ? i18n.t('user_sessions.login') :
-	        	eventlocal = eventlocal == 'sshlogin' ? i18n.t('user_sessions.sshlogin') :
-	        	eventlocal = eventlocal == 'reboot' ? i18n.t('user_sessions.reboot') :
-	        	eventlocal = eventlocal == 'shutdown' ? i18n.t('user_sessions.shutdown') :
-	        	(eventlocal === 'logout' ? i18n.t('user_sessions.logout') : eventlocal)
-	        	$('td:eq(2)', nRow).html(eventlocal)
-
-	        	// Format date
-	        	var event = parseInt($('td:eq(5)', nRow).html());
-	        	var date = new Date(event * 1000);
-	        	$('td:eq(5)', nRow).html('<span title="' + moment(date).format('llll') + '">'+moment(date).fromNow()+'</span>');
-
 		    }
 	    } );
 	} );
