@@ -30,9 +30,11 @@ class User_sessions_model extends Model {
      public function get_unique_users()
      {
         $out = array();
-        $sql = "SELECT DISTINCT user, serial_number, COUNT(1) AS count
+        $sql = "SELECT DISTINCT user, COUNT(1) AS count
                 FROM user_sessions
-                WHERE USER NOT LIKE "" AND USER NOT LIKE "_mbsetupuser"
+                LEFT JOIN reportdata USING (serial_number)
+                ".get_machine_group_filter()."
+                WHERE USER NOT LIKE '' AND USER NOT LIKE '_mbsetupuser'
                 GROUP BY user
                 ORDER BY COUNT DESC";
         

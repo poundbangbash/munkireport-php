@@ -17,10 +17,7 @@ new User_sessions_model;
 		      <tr>
 		      	<th data-i18n="listing.computername" data-colname='machine.computer_name'></th>
 		      	<th data-i18n="serial" data-colname='reportdata.serial_number'></th>
-		      	<th data-i18n="event" data-colname='user_sessions.event'></th>
 		      	<th data-i18n="username" data-colname='user_sessions.user'></th>
-		      	<th data-i18n="user_sessions.ipaddress" data-colname='user_sessions.remote_ssh'></th>
-		      	<th data-i18n="user_sessions.time" data-colname='user_sessions.time'></th>
 		      </tr>
 		    </thead>
 		    <tbody>
@@ -72,7 +69,7 @@ new User_sessions_model;
                 url: appUrl + '/datatables/data',
                 type: "POST",
                 data: function(d){
-                     d.mrColNotEmpty = "event";
+                     d.mrColNotEmpty = "user";
                 }
             },
             dom: mr.dt.buttonDom,
@@ -80,6 +77,7 @@ new User_sessions_model;
             order: mySort,
             columnDefs: columnDefs,
 		    createdRow: function( nRow, aData, iDataIndex ) {
+
 	        	// Update name in first column to link
 	        	var name=$('td:eq(0)', nRow).html();
 	        	if(name == ''){name = "No Name"};
