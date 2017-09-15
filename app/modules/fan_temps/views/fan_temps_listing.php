@@ -124,21 +124,21 @@ new Fan_temps_model;
                 var temperature_unit = "<?=conf('temperature_unit')?>";
 
 			var columnvar=$('td:eq(2)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(2)', nRow).html('');
 			} else{				 
 				 $('td:eq(2)', nRow).html(columnvar+" "+i18n.t('fan_temps.rpm'));
 			}
                 
 			var columnvar=$('td:eq(3)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(3)', nRow).html('');
 			} else{				 
 				 $('td:eq(3)', nRow).html(columnvar+" "+i18n.t('fan_temps.rpm'));
 			}
                 
 			var columnvar=$('td:eq(4)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(4)', nRow).html('');
 			} else{				 
 				 $('td:eq(4)', nRow).html(columnvar+" "+i18n.t('fan_temps.rpm'));
@@ -146,7 +146,7 @@ new Fan_temps_model;
                 
 			// ambient air 0
 			var columnvar=$('td:eq(5)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(5)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -159,7 +159,7 @@ new Fan_temps_model;
 			}
                              
 			var columnvar=$('td:eq(6)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(6)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -172,7 +172,7 @@ new Fan_temps_model;
 			}
                              
 			var columnvar=$('td:eq(7)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(7)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -185,7 +185,7 @@ new Fan_temps_model;
 			}
                               
 			var columnvar=$('td:eq(8)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(8)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -198,7 +198,7 @@ new Fan_temps_model;
 			}
                              
 			var columnvar=$('td:eq(9)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(9)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -211,7 +211,7 @@ new Fan_temps_model;
 			}
                               
 			var columnvar=$('td:eq(10)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(10)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -225,7 +225,7 @@ new Fan_temps_model;
                              
 			// 
 			var columnvar=$('td:eq(11)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(11)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -239,7 +239,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(12)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(12)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -253,7 +253,7 @@ new Fan_temps_model;
                                            
 			// 
 			var columnvar=$('td:eq(13)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(13)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -267,7 +267,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(14)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(14)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -281,7 +281,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(15)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(15)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -295,7 +295,7 @@ new Fan_temps_model;
                                          
 			// 
 			var columnvar=$('td:eq(16)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(16)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -309,7 +309,7 @@ new Fan_temps_model;
                                            
 			// 
 			var columnvar=$('td:eq(17)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(17)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -323,7 +323,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(18)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(18)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -337,7 +337,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(19)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(19)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -351,7 +351,7 @@ new Fan_temps_model;
                                          
 			// 
 			var columnvar=$('td:eq(20)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(20)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -365,7 +365,7 @@ new Fan_temps_model;
                                            
 			// 
 			var columnvar=$('td:eq(21)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(21)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -379,7 +379,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(22)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(22)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -393,7 +393,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(23)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(23)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -407,7 +407,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(24)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(24)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -421,7 +421,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(25)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(25)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -435,7 +435,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(26)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(26)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";
@@ -449,7 +449,7 @@ new Fan_temps_model;
                                           
 			// 
 			var columnvar=$('td:eq(27)', nRow).html();
-			if(columnvar == "-9876540") {
+			if(columnvar == "") {
 				 $('td:eq(27)', nRow).html('');
 			} else{				 
 				 temperature_c = parseFloat((columnvar * 1).toFixed(2))+"°C";

@@ -102,7 +102,7 @@ def ard_access_check():
         out, err = sp.communicate()
         plist = plistlib.readPlist(plist_path)
 
-        if plist['ARD_AllLocalUsers']:
+        if plist.get('ARD_AllLocalUsers', None):
             return "All users permitted"
         else:
             # Second method - check local directory for naprivs
@@ -133,10 +133,16 @@ def firmware_pw_check():
     The command firmwarepassword appeared in 10.10, so we use nvram for older versions.
     Thank you @steffan for this check."""
     if float(os.uname()[2][0:2]) >= 14:
-        sp = subprocess.Popen(['firmwarepasswd', '-check'], stdout=subprocess.PIPE)
-        out, err = sp.communicate()
-        firmwarepw = out.split()[2]
-
+        try:
+            sp = subprocess.Popen(['/usr/sbin/firmwarepasswd', '-check'], stdout=subprocess.PIPE)
+            out, err = sp.communicate()
+            firmwarepw = out.split()[2]
+        except OSError as e:
+            # firmwarepasswd command not found at the path we specified
+            # so set the data to blank and print a warning.
+            print "Error: firmwarepasswd binary not found or accessible."
+            firmwarepw = ""
+        
     else:
         sp = subprocess.Popen(['nvram', 'security-mode'], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
         mode_out, mode_err = sp.communicate()
@@ -147,6 +153,16 @@ def firmware_pw_check():
             firmwarepw = "Yes"
 
     return firmwarepw
+
+
+def firewall_enable_check():
+    """Checks to see if firewall is enabled using a one-shot defaults read command.
+    Doing it this way because shelling out is easier than having to convert..."""
+
+    sp = subprocess.Popen(['defaults', 'read', '/Library/Preferences/com.apple.alf', 'globalstate'], stdout=subprocess.PIPE)
+    out, err = sp.communicate()
+
+    return out[0]
 
 
 def main():
@@ -170,6 +186,7 @@ def main():
     result.update({'ssh_users': ssh_access_check()})
     result.update({'ard_users': ard_access_check()})
     result.update({'firmwarepw': firmware_pw_check()})
+    result.update({'firewall_state':firewall_enable_check()})
 
     # Write results of checks to cache file
     output_plist = os.path.join(cachedir, 'security.plist')
