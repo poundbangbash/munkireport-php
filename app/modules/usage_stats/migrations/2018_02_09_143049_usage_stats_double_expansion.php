@@ -9,7 +9,6 @@ class UsageStatsDoubleExpansion extends Migration
     {
         $capsule = new Capsule();
         $capsule::schema()->table('usage_stats', function (Blueprint $table) {
-            $table->increments('id');
             $table->double('ibyte_rate',16,2)->nullable();
             $table->double('ibytes',16,2)->nullable();
             $table->double('ipacket_rate',16,2)->nullable();
