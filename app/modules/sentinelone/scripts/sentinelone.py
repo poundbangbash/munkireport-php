@@ -6,6 +6,7 @@ import sys
 import os
 import plistlib
 import dateutil.parser as dp
+import operator
 
 def dict_clean(items):
     result = {}
@@ -41,6 +42,37 @@ def main():
         # convert the ISO time to epoch time and store back in the variable
         s1_summary['last-seen'] = dp.parse(s1_summary['last-seen']).strftime('%s')
 
+
+        # Check if any files are in quarantine
+        
+        quarantine_command = [s1_binary, 'quarantine', 'list', 'files']
+        task = subprocess.Popen(quarantine_command,
+                                stdout=subprocess.PIPE,
+                                stderr=subprocess.PIPE)
+
+        (q_stdout, q_stderr) = task.communicate()
+        
+        if "No files quarantined" in q_stdout:
+            pass 
+        else:
+            lines = q_stdout.splitlines()
+            mylist = [list(thing.split(' ')) for thing in lines]
+
+            # recombine file path since it split at spaces
+            for items in mylist:
+                items[3:] = [''.join(items[3:])]
+
+            quarantine_list = []
+            sub_q_dict = {}
+        #iterate thru the list of lists
+            for i in range(len(mylist)):
+                uuid,path=operator.itemgetter(1,3)(mylist[i])
+                sub_q_dict["uuid"] = uuid
+                sub_q_dict["path"] = path
+                quarantine_list.append(sub_q_dict)
+
+            s1_summary["quarantined_files"] = quarantine_list
+
         # Write to disk
         output_plist = os.path.join(cachedir, 'sentinelone.plist')
         plistlib.writePlist(s1_summary, output_plist)
@@ -50,3 +82,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
