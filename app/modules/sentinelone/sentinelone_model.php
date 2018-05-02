@@ -18,6 +18,8 @@ class Sentinelone_model extends \Model
         $this->rs['last_seen'] = '';
         $this->rs['mgmt_url'] = '';
         $this->rs['self_protection_enabled'] = 0; //boolean
+        $this->rs['uuid'] '';
+        $this->rs['path'] '';
        
         if ($serial) {
             $this->retrieve_record($serial);
@@ -35,8 +37,8 @@ class Sentinelone_model extends \Model
         $parser->parse($data, CFPropertyList::FORMAT_XML);
         $plist = $parser->toArray();
 
-    // Delete previous set        
-    $this->deleteWhere('serial_number=?', $this->serial_number);
+		// Delete previous set        
+		$this->deleteWhere('serial_number=?', $this->serial_number);
 
         $translate = array(
           'active-threats-present' => 'active_threats_present',
@@ -51,17 +53,28 @@ class Sentinelone_model extends \Model
         );
 
         foreach ($translate as $search => $item) {
-            if (isset($plist[$search])) {
-                if ($plist[$search] === true) {
-                    $this->$item = 1;
-                } elseif ($plist[$search] === false) {
-                    $this->$item = 0;
-                } else {
-                    $this->$item = $plist[$search];
-                }
-            } else {
-                $this->$item = '';
-            }
+            if ($plist[$search] != 'quarantined_files') {
+				if (isset($plist[$search])) {
+					if ($plist[$search] === true) {
+						$this->$item = 1;
+					} elseif ($plist[$search] === false) {
+						$this->$item = 0;
+					} else {
+						$this->$item = $plist[$search];
+					}
+				} else {
+					$this->$item = '';
+				}
+			} else {
+				$q_fields = array ('uuid','path');
+				foreach ($q_fields as $q_field) {
+					if ( array_key_exists($q_field, $plist[$search])) {
+						this->rs[$q_field] = $plist[$search][$q_field];
+					} else {
+						$this->rs[$q_field] = null;
+					}
+				}
+			}	
         }
         $this->save();
     }
