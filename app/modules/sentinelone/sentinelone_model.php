@@ -69,7 +69,7 @@ class Sentinelone_model extends \Model
 				$q_fields = array ('uuid','path');
 				foreach ($q_fields as $q_field) {
 					if ( array_key_exists($q_field, $plist[$search])) {
-						this->rs[$q_field] = $plist[$search][$q_field];
+						$this->rs[$q_field] = $plist[$search][$q_field];
 					} else {
 						$this->rs[$q_field] = null;
 					}
