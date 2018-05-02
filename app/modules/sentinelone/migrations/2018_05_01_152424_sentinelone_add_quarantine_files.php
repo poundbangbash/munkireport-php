@@ -13,8 +13,8 @@ class SentineloneAddQuarantineFiles extends Migration
         $capsule = new Capsule();
         
         $capsule::schema()->table($this->tableName, function (Blueprint $table) {
-              $table->string('uuid')->nullable()->change();
-              $table->string('path')->nullable()->change();
+              $table->string('uuid')->nullable();
+              $table->string('path')->nullable();
         });
     }
 
