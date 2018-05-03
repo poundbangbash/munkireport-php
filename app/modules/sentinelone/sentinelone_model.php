@@ -49,8 +49,14 @@ class Sentinelone_model extends \Model
           'enforcing-security' => 'enforcing_security',
           'last-seen' => 'last_seen',
           'mgmt-url' => 'mgmt_url',
-          'self-protection-enabled' => 'self_protection_enabled'
+          'self-protection-enabled' => 'self_protection_enabled',
+          'quarantined_files' => 'quarantined_files'
         );
+
+		$typeList = array(
+			'uuid' => '',
+			'path' => '',
+		);
 
         foreach ($translate as $search => $item) {
             if ($plist[$search] != 'quarantined_files') {
@@ -66,16 +72,13 @@ class Sentinelone_model extends \Model
 					$this->$item = '';
 				}
 			} else {
-				$q_fields = array ('uuid','path');
-				foreach ($q_fields as $q_field) {
-					if ( array_key_exists($q_field, $plist[$search])) {
-						$this->rs[$q_field] = $plist[$search][$q_field];
-					} else {
-						$this->rs[$q_field] = null;
-					}
+					foreach ($typeList as $key => $value) {
+						print_r($plist[$search]);
+						$this->rs[$key] = $search[$key];
 				}
-			}	
+			}
         }
+			$this->id = '';
         $this->save();
     }
 
