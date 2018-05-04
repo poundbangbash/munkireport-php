@@ -4,8 +4,8 @@
 <table id="sentinelonequarantine-table" class="table table-condensed table-striped">
     <thead>
         <tr>
-            <th data-i18n="sentinelonequarantine.path"></th>
             <th data-i18n="sentinelonequarantine.uuid"></th>
+            <th data-i18n="sentinelonequarantine.path"></th>
         </tr>
     </thead>
     <tbody>
