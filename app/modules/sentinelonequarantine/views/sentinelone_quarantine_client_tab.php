@@ -1,39 +1,51 @@
-    <h2 data-i18n="sentinelone.client_tab"></h2>
+<h2 data-i18n="sentinelonequarantine.sentinelone_quarantine"></h2>
 
-    <div id="sentinelone-msg" data-i18n="listing.loading" class="col-lg-12 text-center"></div>
 
-    <div id="sentinelone-view" class="row hide">
-        <div class="col-md-6">
-                <h2 data-i18n="sentinelonequarantine.sentinelone_quarantine"></h2>
-			<table class="table table-striped">
-				<tr>
-					<th data-i18n="sentinelonequarantine.path"></th>
-					<td id="sentinelonequarantine-path"></td>
-				</tr>
-				<tr>
-					<th data-i18n="sentinelonequarantine.uuid"></th>
-					<td id="sentinelonequarantine-uuid"></td>
-				</tr>
-            </table>
-        </div>
-        <div class="col-md-6">
-        </div>
-    </div>
+<table id="sentinelonequarantine-table" class="table table-condensed table-striped">
+    <thead>
+        <tr>
+            <th data-i18n="sentinelonequarantine.path"></th>
+            <th data-i18n="sentinelonequarantine.uuid"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td colspan="2" data-i18n="listing.loading"></td>
+        </tr>
+    </tbody>
+</table>
 
 <script>
+
+
 $(document).on('appReady', function(e, lang) {
 
-    // Get sentinelone data
+    // Get certificate data
     $.getJSON( appUrl + '/module/sentinelonequarantine/get_data/' + serialNumber, function( data ) {
-            // Hide
-            $('#sentinelone-msg').text('');
-            $('#sentinelone-view').removeClass('hide');
+        if(data.length)
+        {
+            var tbl = $('#sentinelonequarantine-table tbody');
 
-            // Add strings
-            $('#sentinelonequarantine-path').text(data.path);
-            $('#sentinelonequarantine-uuid').text(data.uuid);
-            
-        });
+            tbl.empty();
+
+            // Load data
+            $.each(data, function(index, cert){
+                tbl.append($('<tr>')
+                    .attr('title', sentinelonequarantine.rs.uuid)
+                    .append($('<td>')
+                        .text(sentinelonequarantine.rs.uuid))
+                    .append($('<td>')
+                        .text(sentinelonequarantine.rs.path))                        
+            });
+
+            // Add tooltips
+            $('tr[title]').tooltip();
+
+            // Set correct tab on location hash
+            loadHash();
+
+        }
+    });
 });
 
 </script>
