@@ -21,7 +21,7 @@ class Sentinelonequarantine_controller extends Module_controller
      **/
     public function index()
     {
-        echo "You've loaded the sentinelone_quarantine module!";
+        echo "You've loaded the sentinelonequarantine module!";
     }
     
     /**

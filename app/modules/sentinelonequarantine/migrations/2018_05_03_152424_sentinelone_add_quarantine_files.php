@@ -8,7 +8,7 @@ class SentineloneAddQuarantineFiles extends Migration
     public function up()
     {
         $capsule = new Capsule();
-        $capsule::schema()->create('sentinelone_quarantine', function (Blueprint $table) {
+        $capsule::schema()->create('sentinelonequarantine', function (Blueprint $table) {
             $table->increments('id');
             $table->string('serial_number');
             $table->string('uuid')->nullable();
@@ -21,6 +21,6 @@ class SentineloneAddQuarantineFiles extends Migration
     public function down()
     {
         $capsule = new Capsule();
-        $capsule::schema()->dropIfExists('sentinelone_quarantine');
+        $capsule::schema()->dropIfExists('sentinelonequarantine');
     }
 }
