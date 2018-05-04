@@ -5,7 +5,7 @@
  * @package munkireport
  * @author
  **/
-class Sentinelone_quarantine_controller extends Module_controller
+class Sentinelonequarantine_controller extends Module_controller
 {
     
     /*** Protect methods with auth! ****/

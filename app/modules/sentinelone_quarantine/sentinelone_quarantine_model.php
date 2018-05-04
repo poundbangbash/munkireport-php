@@ -2,7 +2,7 @@
 
 use CFPropertyList\CFPropertyList;
 
-class Sentinelone_quarantine_model extends \Model
+class Sentinelonequarantine_model extends \Model
 {
     public function __construct($serial = '')
     {
@@ -63,5 +63,3 @@ class Sentinelone_quarantine_model extends \Model
 	}
 
 }
-
-
