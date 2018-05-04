@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MODULE_NAME="sentinelone_quarantine"
+MODULE_NAME="sentinelonequarantine"
 MODULESCRIPT="sentinelone_quarantine.py"
 QUARANTINE_FILE="sentinelone_quarantine.plist"
 
