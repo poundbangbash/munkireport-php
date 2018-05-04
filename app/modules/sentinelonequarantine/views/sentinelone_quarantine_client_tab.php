@@ -38,8 +38,6 @@ $(document).on('appReady', function(e, lang) {
                         .text(sentinelonequarantine.rs.uuid)));                      
             });
 
-            // Add tooltips
-            $('tr[title]').tooltip();
 
             // Set correct tab on location hash
             loadHash();
