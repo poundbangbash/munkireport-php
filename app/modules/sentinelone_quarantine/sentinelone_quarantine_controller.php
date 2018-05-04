@@ -38,8 +38,8 @@ class Sentinelonequarantine_controller extends Module_controller
             return;
         }
 
-        $s1 = new Sentinelone_quarantine_model($serial_number);
-        $obj->view('json', array('msg' => $s1->rs));
+        $s1_q = new Sentinelonequarantine_model($serial_number);
+        $obj->view('json', array('msg' => $s1_q->rs));
     }
 
 } // END class default_module
