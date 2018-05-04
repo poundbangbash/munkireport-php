@@ -2,15 +2,21 @@
 
 use CFPropertyList\CFPropertyList;
 
-class Sentinelone_quarantine_model extends \Model
+class Sentinelone_model extends \Model
 {
     public function __construct($serial = '')
     {
         parent::__construct('id', 'sentinelone'); //primary key, tablename
         $this->rs['id'] = '';
         $this->rs['serial_number'] = $serial;
-        $this->rs['uuid'] = '';
-        $this->rs['path'] = '';
+        $this->rs['active_threats_present'] = 0; //boolean
+        $this->rs['agent_id'] = '';
+        $this->rs['agent_running'] = 0; //boolean
+        $this->rs['agent_version'] = '';
+        $this->rs['enforcing_security'] = 0; //boolean
+        $this->rs['last_seen'] = '';
+        $this->rs['mgmt_url'] = '';
+        $this->rs['self_protection_enabled'] = 0; //boolean
        
         if ($serial) {
             $this->retrieve_record($serial);
@@ -28,8 +34,8 @@ class Sentinelone_quarantine_model extends \Model
         $parser->parse($data, CFPropertyList::FORMAT_XML);
         $plist = $parser->toArray();
 
-		// Delete previous set        
-		$this->deleteWhere('serial_number=?', $this->serial_number);
+    // Delete previous set        
+    $this->deleteWhere('serial_number=?', $this->serial_number);
 
         $translate = array(
           'active-threats-present' => 'active_threats_present',
@@ -39,34 +45,21 @@ class Sentinelone_quarantine_model extends \Model
           'enforcing-security' => 'enforcing_security',
           'last-seen' => 'last_seen',
           'mgmt-url' => 'mgmt_url',
-          'self-protection-enabled' => 'self_protection_enabled',
-          'quarantined_files' => 'quarantined_files'
+          'self-protection-enabled' => 'self_protection_enabled'
         );
 
-		$typeList = array(
-			'uuid' => '',
-			'path' => '',
-		);
-
         foreach ($translate as $search => $item) {
-            if ($plist[$search] != 'quarantined_files') {
-				if (isset($plist[$search])) {
-					if ($plist[$search] === true) {
-						$this->$item = 1;
-					} elseif ($plist[$search] === false) {
-						$this->$item = 0;
-					} else {
-						$this->$item = $plist[$search];
-					}
-				} else {
-					$this->$item = '';
-				}
-			} else {
-					foreach ($typeList as $key => $value) {
-						print_r($plist[$search]);
-						$this->rs[$key] = $search[$key];
-				}
-			}
+            if (isset($plist[$search])) {
+                if ($plist[$search] === true) {
+                    $this->$item = 1;
+                } elseif ($plist[$search] === false) {
+                    $this->$item = 0;
+                } else {
+                    $this->$item = $plist[$search];
+                }
+            } else {
+                $this->$item = '';
+            }
         }
         $this->id = '';
         $this->save();

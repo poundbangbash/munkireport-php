@@ -3,7 +3,6 @@
 MODULE_NAME="sentinelone"
 MODULESCRIPT="sentinelone.py"
 PREF_FILE="sentinelone.plist"
-QUARANTINE_FILE="sentinelone_quarantine.plist"
 
 CTL="${BASEURL}index.php?/module/${MODULE_NAME}/"
 
@@ -17,7 +16,6 @@ if [ $? = 0 ]; then
 
     # Set preference to include the Pref and Quarantine files in the preflight check
     setreportpref $MODULE_NAME "${CACHEPATH}${PREF_FILE}"
-    setreportpref $MODULE_NAME "${CACHEPATH}${QUARANTINE_FILE}"
 
 else
     echo "Failed to download all required components!"
