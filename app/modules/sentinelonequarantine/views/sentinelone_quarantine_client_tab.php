@@ -22,6 +22,8 @@ $(document).on('appReady', function(e, lang) {
 
     // Get certificate data
     $.getJSON( appUrl + '/module/sentinelonequarantine/get_data/' + serialNumber, function( data ) {
+        // Set count of quarantined files
+        $('#sentinelonequarantine-cnt').text(data.length);
         if(data.length)
         {
             var tbl = $('#sentinelonequarantine-table tbody');
