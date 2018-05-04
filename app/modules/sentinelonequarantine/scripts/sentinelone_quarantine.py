@@ -57,7 +57,7 @@ def main():
                 uuid,path=operator.itemgetter(1,3)(mylist[i])
                 sub_q_dict["uuid"] = uuid
                 sub_q_dict["path"] = path
-                quarantine_list.append(sub_q_dict)
+                quarantine_list.append(sub_q_dict.copy())
 
         # Write array of dicts to disk
         q_output_plist = os.path.join(cachedir, 'sentinelone_quarantine.plist')
