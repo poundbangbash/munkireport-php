@@ -31,11 +31,11 @@ $(document).on('appReady', function(e, lang) {
             // Load data
             $.each(data, function(index, sentinelonequarantine){
                 tbl.append($('<tr>')
-                    .attr('title', sentinelonequarantine.rs.uuid)
+                    .attr('title', sentinelonequarantine.rs.path)
                     .append($('<td>')
-                        .text(sentinelonequarantine.rs.uuid))
+                        .text(sentinelonequarantine.rs.path))
                     .append($('<td>')
-                        .text(sentinelonequarantine.rs.path)));                      
+                        .text(sentinelonequarantine.rs.uuid)));                      
             });
 
             // Add tooltips
