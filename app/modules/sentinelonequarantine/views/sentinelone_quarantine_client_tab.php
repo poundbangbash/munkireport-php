@@ -29,7 +29,7 @@ $(document).on('appReady', function(e, lang) {
             tbl.empty();
 
             // Load data
-            $.each(data, function(index, cert){
+            $.each(data, function(index, sentinelonequarantine){
                 tbl.append($('<tr>')
                     .attr('title', sentinelonequarantine.uuid)
                     .append($('<td>')
