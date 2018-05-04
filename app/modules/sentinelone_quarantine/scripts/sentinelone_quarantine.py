@@ -31,21 +31,6 @@ def main():
         if not os.path.exists(cachedir):
             os.makedirs(cachedir)
 
-        summary_command = [s1_binary, 'summary', 'json']
-        task = subprocess.Popen(summary_command,
-                                stdout=subprocess.PIPE,
-                                stderr=subprocess.PIPE)
-
-        (stdout, stderr) = task.communicate()
-        # Sentinel One's output has a header of "Summary information" that needs to be stripped off to be proper json
-        s1_summary = json.loads(stdout.split('\n',1)[1], object_pairs_hook=dict_clean)
-        # convert the ISO time to epoch time and store back in the variable
-        s1_summary['last-seen'] = dp.parse(s1_summary['last-seen']).strftime('%s')
-
-        # Write to disk
-        output_plist = os.path.join(cachedir, 'sentinelone.plist')
-        plistlib.writePlist(s1_summary, output_plist)
-
         # Check if any files are in quarantine
         
         quarantine_command = [s1_binary, 'quarantine', 'list', 'files']

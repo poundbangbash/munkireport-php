@@ -1,0 +1,45 @@
+<?php
+/**
+ * SentinelOne Quarantine module class
+ *
+ * @package munkireport
+ * @author
+ **/
+class Sentinelone_quarantine_controller extends Module_controller
+{
+    
+    /*** Protect methods with auth! ****/
+    public function __construct()
+    {
+        // Store module path
+        $this->module_path = dirname(__FILE__);
+    }
+    /**
+     * Default method
+     *
+     * @author AvB
+     **/
+    public function index()
+    {
+        echo "You've loaded the sentinelone_quarantine module!";
+    }
+    
+    /**
+     * Get sentinelone_quarantine for serial_number
+     *
+     * @param string $serial serial number
+     **/
+    public function get_data($serial_number = '')
+    {
+        $obj = new View();
+
+        if (! $this->authorized()) {
+            $obj->view('json', array('msg' => 'Not authorized'));
+            return;
+        }
+
+        $s1 = new Sentinelone_quarantine_model($serial_number);
+        $obj->view('json', array('msg' => $s1->rs));
+    }
+
+} // END class default_module

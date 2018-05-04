@@ -1,8 +1,7 @@
 #!/bin/bash
 
-MODULE_NAME="sentinelone"
-MODULESCRIPT="sentinelone.py"
-PREF_FILE="sentinelone.plist"
+MODULE_NAME="sentinelone_quarantine"
+MODULESCRIPT="sentinelone_quarantine.py"
 QUARANTINE_FILE="sentinelone_quarantine.plist"
 
 CTL="${BASEURL}index.php?/module/${MODULE_NAME}/"
@@ -16,7 +15,6 @@ if [ $? = 0 ]; then
     chmod a+x "${MUNKIPATH}preflight.d/${MODULESCRIPT}"
 
     # Set preference to include the Pref and Quarantine files in the preflight check
-    setreportpref $MODULE_NAME "${CACHEPATH}${PREF_FILE}"
     setreportpref $MODULE_NAME "${CACHEPATH}${QUARANTINE_FILE}"
 
 else

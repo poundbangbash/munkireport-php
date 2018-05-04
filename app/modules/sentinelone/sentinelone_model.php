@@ -2,21 +2,13 @@
 
 use CFPropertyList\CFPropertyList;
 
-class Sentinelone_model extends \Model
+class Sentinelone_quarantine_model extends \Model
 {
     public function __construct($serial = '')
     {
         parent::__construct('id', 'sentinelone'); //primary key, tablename
         $this->rs['id'] = '';
         $this->rs['serial_number'] = $serial;
-        $this->rs['active_threats_present'] = 0; //boolean
-        $this->rs['agent_id'] = '';
-        $this->rs['agent_running'] = 0; //boolean
-        $this->rs['agent_version'] = '';
-        $this->rs['enforcing_security'] = 0; //boolean
-        $this->rs['last_seen'] = '';
-        $this->rs['mgmt_url'] = '';
-        $this->rs['self_protection_enabled'] = 0; //boolean
         $this->rs['uuid'] = '';
         $this->rs['path'] = '';
        
