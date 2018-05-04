@@ -35,7 +35,7 @@ $(document).on('appReady', function(e, lang) {
                     .append($('<td>')
                         .text(sentinelonequarantine.rs.uuid))
                     .append($('<td>')
-                        .text(sentinelonequarantine.rs.path))                        
+                        .text(sentinelonequarantine.rs.path)));                      
             });
 
             // Add tooltips
