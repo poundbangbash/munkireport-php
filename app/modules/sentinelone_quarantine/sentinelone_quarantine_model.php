@@ -6,7 +6,7 @@ class Sentinelonequarantine_model extends \Model
 {
     public function __construct($serial = '')
     {
-        parent::__construct('id', 'sentinelone'); //primary key, tablename
+        parent::__construct('id', 'sentinelone_quarantine'); //primary key, tablename
         $this->rs['id'] = '';
         $this->rs['serial_number'] = $serial;
         $this->rs['path'] = '';
